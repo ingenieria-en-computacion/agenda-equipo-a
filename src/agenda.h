@@ -17,7 +17,7 @@ typedef struct{
     char telefono[20];
     char tipo_tel[20];
     int dia;
-    int mes;
+    int mes; 
 }Persona;
 
 typedef struct Persona Contacto;
