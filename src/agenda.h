@@ -28,15 +28,14 @@ typedef struct Agenda{
 } Agenda;
 
 
-void iniciar_agenda(Agenda *agenda);
-void agregar_contacto(Agenda *agenda, Contacto c);
-int buscar_contacto(Agenda *agenda, char *nombre);
-int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]);
-void ordenar_contactos(Agenda *agenda);
-void ordenar_contactos_inv(Agenda *agenda);
-void mostrar_contactos(Contacto);
-void leer_contacto(Contacto *c);
-void cargar_contactos(char *filename);
-void guardar_contactos(char *filename);
+void iniciar_agenda(Agenda *a);
+void agregar_contacto(Agenda *a);
+int buscar_contacto(const Agenda *a, const char *nombre[]);
+int buscar_contacto_x_telefono(const Agenda *a, const char *telefono[]);
+void ordenar_contactos(Agenda *a);
+void ordenar_contactos_inv(Agenda *a);
+void mostrar_contactos(const Agenda *a);
+void cargar_contactos(Agenda *a, const char *nombreArchivo);
+void guardar_contactos(const Agenda *a, const char *nombreArchivo);
 
 #endif // __AGENDA_H_
