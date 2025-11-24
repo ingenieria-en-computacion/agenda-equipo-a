@@ -17,7 +17,7 @@ void menu() {
 }
 
 
-void iniciar_agenda(Agenda *agenda){
+void iniciar_agenda(Agenda *a){
     a->num_contactos = 0;
     printf("Agenda inicializada.\n");
 }
@@ -28,7 +28,7 @@ int num_contactos;
 /**
  * Esta función sirve para agregar un contacto nuevo en la agenda
  */
-void agregar_contacto(Agenda *agenda, Contacto c){
+void agregar_contacto(Agenda *a){
     if (a->num_contactos >= MAX) {
         printf("La agenda está llena.\n");
         return;
@@ -62,7 +62,7 @@ void agregar_contacto(Agenda *agenda, Contacto c){
  * Esta función sirve para buscar un contacto por nombre en la agenda y retorna la posición del contacto si exisite
  * En caso contrario retorna -1
  */
-int buscar_contacto(Agenda *agenda, char *nombre){
+int buscar_contacto(const Agenda *a, const char *nombre[]){
     bool encontrado = false;
 
     for (int i = 0; i < a->num_contactos; i++) {
@@ -82,7 +82,7 @@ int buscar_contacto(Agenda *agenda, char *nombre){
 /**
  * Esta función  sirve para buscar un contacto por su número de telefono en la agenda
  */
-int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]){
+int buscar_contacto_x_telefono(const Agenda *a, const char *telefono[]){
     for (int i = 0; i < a->num_contactos; i++) {
         if (strcmp(a->contactos[i].telefono, telefono) == 0) {
             Persona p = a->contactos[i];
@@ -129,7 +129,7 @@ void ordenar_contactos_inv(Agenda *a){
 /**
  * Función auxiliar para imprimir un contacto
  */
-void mostrar_contactos(Contacto){
+void mostrar_contactos(const Agenda *a){
     if (a->num_contactos == 0) {
         printf("No hay contactos.\n");
         return;
@@ -142,17 +142,11 @@ void mostrar_contactos(Contacto){
     }
 }
 
-/**
- * Función auxiliar para leer un contacto
- */
-void leer_contacto(Contacto *c){
-
-}
 
 /**
  * Función que sirve para cargar contactos escritos en un archivo a la agenda
  */
-void cargar_contactos(char *filename, Agenda *agenda){
+void cargar_contactos(Agenda *a, const char *nombreArchivo){
     FILE *f = fopen(archivo, "r");
     if (!f) {
         printf("Archivo no encontrado.\n");
@@ -176,7 +170,7 @@ void cargar_contactos(char *filename, Agenda *agenda){
 /**
  * Función que sirve para guardar todos los contactos de la agenda en un archivo
  */
-void guardar_contactos(char *filename, Agenda agenda){
+void guardar_contactos(const Agenda *a, const char *nombreArchivo){
     FILE *f = fopen(archivo, "w");
     if (!f) {
         printf("Error al abrir archivo.\n");
